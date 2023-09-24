@@ -1,41 +1,118 @@
-<!-- login.html -->
-
-{% extends 'base.html' %}
+{% extends 'loginportal.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Login{% endblock %}
+
 {% block content %}
+<br><br>
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-conten padding-y" style="min-height:84vh">
+<section >
+  <br><br>
+<div class="container">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem; width:400px; margin: auto; height: 670px">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <img src="https://i.postimg.cc/bvgZkkh4/NYSC-LOGO-svg.png" width="130" height="130" class="rounded-circle z-depth-0 pol" alt="">
+                <p class=" mb-5 blink90" style="color: orange; font-size: 200%; text-align: center; font-weight:900">Hi, Welcome Back</p>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center ">
+                <!-- class column -->
 
-    <!-- ============================ COMPONENT LOGIN   ================================= -->
-    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-        <div class="card-body">
-            <h4 class="card-title mb-4">Sign in</h4>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.username }}
-                </div>
-                <div class="form-group">
-                    {{ form.password }}
-                </div>
-                <div class="form-group">
-                    <a href="#" class="float-right">Forgot password?</a>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Login </button>
-                </div>
-            </form>
-        </div>
-        <!-- card-body.// -->
-    </div>
-    <!-- card .// -->
+              </div>
+                <form action="" method="post">
+                  {% csrf_token %}
 
-    <p class="text-center mt-4">Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
-    <br><br>
-    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+              <div class="form-group">
+                <div class="col-md-12">
+
+                  <span   style="color: lightsteelblue; font-weight: bold; font-size: 20px"><label for="username">🕵🏻‍♂️Username</label></span>
+                  <input type="text" name="username" style="border: 2px solid cyan" placeholder="Fill in Username Here" class="form-control">
+<br>
+                  <span  style="color: lightsteelblue; font-weight: bold; font-size: 20px"><label for="password">🔐Password</label></span>
+                  <input type="password" name="password" style="border: 2px solid cyan" placeholder="Fill in Password Here" class="form-control">
+                  </div>
+                  {% comment %} <div class="row justify-content-center">
+                      <input type="submit" value="🔓Login" class="btn btn-warning btn-lg mt-3 font-weight-bold" style=" width: 89%; padding: 10px 32px; ">
+                  </div> {% endcomment %}
+                  <br>
+                  <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                  <br><br>
+
+                  <p style="text-align: left"><a href="" style="color:cyan; background-color:transparent; text-decoration:none"  class=" fw-bold">Forget password?</a></p>
+<br>
+                  <div>
+                    <p class="mb-0">Don't have an account?</p> <p><a href="" class=" fw-bold" style="color:cyan; background-color:transparent; text-decoration:none">Sign Up</a>
+                    </p>
+                  </div>
+                  
+                </div>
+              </div>
+             
+                </form>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+          </div>
+          </div> 
+          </div>
+          
 
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
+{%endblock%}
 
-{% endblock  %}
+
+
+{% comment %} 
+            <section class="vh-100 gradient-custom">
+<div class="container">
+              <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                      <div class="card-body p-5 text-center">
+            
+                        <div class="mb-md-5 mt-md-4 pb-5">
+            
+                          <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                          <p class="text-white-50 mb-5">Please enter your login and password!</p>
+            
+                          <div class="form-outline form-white mb-4">
+                            <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                            <label class="form-label" for="typeEmailX">Email</label>
+                          </div>
+            
+                          <div class="form-outline form-white mb-4">
+                            <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                            <label class="form-label" for="typePasswordX">Password</label>
+                          </div>
+            
+                          <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+            
+                          <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+            
+                          <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                            <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                            <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                            <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                          </div>
+            
+                        </div>
+            
+                        <div>
+                          <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+                          </p>
+                        </div>
+            
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </section> {% endcomment %}
