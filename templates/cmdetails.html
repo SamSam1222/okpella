@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content  %}
+{% if user.image %}
+<br>
+<section class="section-content padding-y bg" style="background-color: teal">
+	
+<div class="container">
+
+<!-- ============================ COMPONENT 1 ================================= -->
+<div class="card">
+	<div class="row no-gutters">
+		<aside class="col-md-6">
+<article class="gallery-wrap"> 
+	<div class="img">
+		<img height="400px" width="100%" src="{{user.image.url}}" alt="House"  style="border:5px solid #C0C0C0">
+	   {% comment %} <img src="{{user.image.url}}"> {% endcomment %}
+	</div> <!-- img-big-wrap.// -->
+	
+</article> <!-- gallery-wrap .end// -->
+		</aside>
+		<main class="col-md-6 border-left">
+<article class="content-body">
+
+<h2 class="title">Name: {{user.first_name}} {{user.last_name}} </h2>
+
+<h6>Status: {{user.status}} </h6><br>
+
+<h6>Phone: {{user.phone_number}} </h6><br>
+<h6>Disicipline: {{user.discipline}} </h6><br>
+<h6>Email: {{user.email}} </h6><br>
+<h6>NYSC Batch: {{user.category}} </h6><br>
+<hr><br>
+
+<h6>PPA: {{user.PPA}} </h6><br>
+	<hr>
+	<a href="{% url 'home' %}" class="btn  btn-primary"> <span class="text">< Back</span> <i class="fas fa-shopp"></i>  </a>
+</article> <!-- product-info-aside .// -->
+		</main> <!-- col.// -->
+	</div> <!-- row.// -->
+</div> <!-- card.// -->
+<!-- ============================ COMPONENT 1 END .// ================================= -->
+
+<br>
+
+</div> 
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+{% endif %}
+{% endblock  %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <p>Okpella is a clan situated along Benin-Abuja federal high way. Going by the last National Census figures, it has the population of 500,000,<br> and is one of the three main towns that make up Etsako East Local Government Area of Edo State. Okpella is known for its natural sedimentary rock based mineral resources, which include limestone, calcium, and granite, feldspar, talc, clay, marble, etc.
+      The Late Clan Head, Andrew Yesufu Eshioramhe Dirisu who reigned for 48 years came from Ogute Sub-Clan.<br>
+      During colonial rule, arising out of personality clashes between Chief Sado who was the statutory Clan Head <br>of OKPELLA clan and Afegbua, the clan was sub-divided into two, namely Ogute and Oteku as sub-clans. While the Ogute sub-clans has prominent villages like Ogute, Imiekuri etc, Oteku sub-clan has two villages, Iddo and Komunio; both plays host to Bua Cement Company Plc and Dangote Group of Company Plc. Okpella was the District Head of the then Kabba Province.
+    </p>
+  </div>
+
+  <div class="w3-row-padding w3-grayscale">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Leaders</h3>
+{% for about in abouts %}
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="{{about.image.url}}" alt="John" style="width:100%">
+      <h5>Name: {{about.name}}</h5>
+      <h6 class="w3-opacity">Position: {{about.position}}</h6>
+      <h6>Name: {{about.phone_number}}</h6>
+      <h6>Name: {{about.email}}</h6>
+
+      <p><a href="https://web.whatsapp.com/"><button class="w3-button w3-light-grey w3-block">Contact</button></a></p>
+    </div>
+  
+    {% endfor %}
+  </div>
+
+
+{% endblock  %}

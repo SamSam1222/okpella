@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+    <img class="w3-image" src="{% static '/images/banna.jpeg' %}" alt="Architecture" width="1500" height="800">
+    <div class="w3-display-middle w3-margin-top w3-center">
+      <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding  w3-text-red w3-opacity-min"><b>Welcome</b></span> <span class="w3-hide-small w3-text-black">Okpella</span></h1>
+    </div>
+  </header>
+  <style>
+
+
+    .food {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  
+    .food img {vertical-align: middle;}
+  
+    .food .note {
+      position: absolute;
+      bottom: 0;
+      background: rgb(0, 0, 0); /* Fallback color */
+      background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+      color: #f1f1f1;
+      width: 100%;
+      padding: 15px;
+    }
+  
+         
+  
+  
+          .glow01 {
+            text-shadow: 0 0 5px darkGreen	, 0 0 10px darkGreen	,
+            0 0 20px darkgreen	, 0 0 40px darkGreen	;
+          }
+  
+  
+  {% comment %} 
+          .btn1 {
+            margin-right: 160px;
+            
+          } {% endcomment %}
+  
+  
+  
+  
+  
+  
+    .clip {
+      position: relative;
+      font-family: Arial;
+    }
+    
+    .text-block {
+      position: absolute;
+      bottom: 20px;
+      right: 20px; 
+      background: rgb(0, 0, 0); /* Fallback color */
+      background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .shirt {
+      position: relative;
+      font-family: Arial;
+    }
+    
+    .text-war {
+      position: absolute;
+      top: 80px;
+      left: 10px; 
+      background: rgb(0, 0, 0); /* Fallback color */
+      background: rgb(255,255,255); /* Black background with 0.5 opacity */
+      color: black;
+      border-radius: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      
+    }
+    
+    .cont {
+      position: relative;
+      width: 100%;
+    }
+    
+    
+    
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    
+    .cont:hover .image {
+      opacity: 0.3;
+    }
+    
+    .cont:hover .middle {
+      opacity: 1;
+    }
+    
+    .text {
+      background-color: #04AA6D;
+      color: white;
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+    </style>
+    
+  <!-- Page content -->
+  <div class="w3-content w3-padding" style="max-width:1564px">
+  
+    <!-- Project Section -->
+  
+    <div class="w3-container w3-padding-32" id="projects">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Okpella Corpers magazine. Etsako East LGA, Edo State Nigeria</h3>
+    </div>
+   
+    <div class="w3-row-padding">
+        {% for uxer in users %}
+        {% if uxer.image %}
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container ">
+          <div class="cont">
+      <div class="clip">
+          <img height="350" width="100%" src="{{uxer.image.url}}" alt="House"  style="border:5px solid #C0C0C0" class="image">
+        <div class="text-block glow01">
+          <h4></h4>
+          <h4 style="font-weight:900">{{uxer.username}}</h4>
+        </div>
+      </div>
+          <a href="{{uxer.get_url}}">
+            <div class="middle">
+              <div class="text">View</div>
+            </div>
+          </div>
+          </a>
+
+          </div> 
+        </div>
+      
+      
+        {% endif %}
+      {% endfor %}
+      
+    </div>
+    <nav class="mt-4" aria-label="Page navigation sample">
+      {% if users.has_other_pages %}
+        <ul class="pagination">
+          {% if users.has_previous %}
+          <li class="page-item "><a class="page-link" href="?page={{users.previous_page_number}}">Previous</a></li>
+          {% else %}
+          <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+  
+          {% endif %}
+  
+          {% for i in users.paginator.page_range %}
+          {% if users.number == i %}
+              <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+          {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+      {% endfor %}
+      {% if users.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{users.next_page_number}}">Next</a></li>
+      {% else %}
+      <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+  
+      {% endif %}
+        </ul>
+        {% endif %}
+      </nav>
+    <!-- Image of location/map -->
+    <div class="w3-container">
+      <a href="https://www.google.com/maps/place/312107,+Okpella,+Edo/@7.2661407,6.3389945,1551m/data=!3m1!1e3!4m23!1m16!4m15!1m6!1m2!1s0x1046765fbcd45ad1:0x479648fb743457e9!2sOkpella,+312107,+Edo!2m2!1d6.34653!2d7.272149!1m6!1m2!1s0x10467d1313bdc737:0xc515cb7b61236da8!2sAuchi,+Edo!2m2!1d6.2747734!2d7.0668645!3e0!3m5!1s0x1046765fbcd45ad1:0x479648fb743457e9!8m2!3d7.272149!4d6.34653!16s%2Fm%2F0415rk0!5m2!1e2!1e4?entry=ttu"> <img src="{% static '/images/map.jpg' %}" class="w3-image" style="width:100%"></a> 
+    </div>
+    
+    <!-- End page content -->
+    </div>
+
+      
+    
+    {% endblock  %}
