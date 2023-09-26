@@ -11,7 +11,29 @@
   </header>
   <style>
 
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      border-radius: 5px;
+      font-weight: bold;
+      
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    img {
+      border-radius: 5px 5px 0 0;
+    }
+    
+    .container {
+      padding: 2px 16px;
+      text-align: center;
+    
+    }
 
+    
     .food {
       position: relative;
       max-width: 100%;
@@ -126,7 +148,7 @@
     <div class="w3-container w3-padding-32" id="projects">
       <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Okpella Corpers magazine. Etsako East LGA, Edo State Nigeria</h3>
     </div>
-   
+{% comment %}    
     <div class="w3-row-padding">
         {% for uxer in users %}
         {% if uxer.image %}
@@ -134,7 +156,7 @@
         <div class="w3-display-container ">
           <div class="cont">
       <div class="clip">
-          <img height="350" width="100%" src="{{uxer.image.url}}" alt="House"  style="border:5px solid #C0C0C0" class="image">
+          <img height="350" width="100%" src="{{uxer.image.url}}" alt="House"  style="" class="image">
         <div class="text-block glow01">
           <h4></h4>
           <h4 style="font-weight:900">{{uxer.username}}</h4>
@@ -149,11 +171,36 @@
 
           </div> 
         </div>
-      
-      
-        {% endif %}
-      {% endfor %}
-      
+       {% endcomment %}
+        {% comment %} {% for uxer in users %}
+        {% if uxer.image %} {% endcomment %}
+
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+           {% for uxer in users %}
+        {% if uxer.image %}
+          <div class="col">
+            <div class="card">
+              <div class="cont">
+                <div class="clip">
+              <img height="350px" src="{{uxer.image.url}}" class=" image card-img-top" alt="...">
+              <div class="text-block glow01">
+                <h4></h4>
+                <h4 style="font-weight:900">{{uxer.username}}</h4>
+              </div>
+            </div>
+            <a href="{{uxer.get_url}}">
+              <div class="middle">
+                <div class="text">View</div>
+              </div>
+            </div>
+            </a>
+  
+            </div> 
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
     </div>
     <nav class="mt-4" aria-label="Page navigation sample">
       {% if users.has_other_pages %}

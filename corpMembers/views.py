@@ -14,7 +14,7 @@ def home(request):
     users = User.objects.all().order_by('-id')  # Get all users
     
     # Define the number of items per page
-    items_per_page = 7
+    items_per_page = 8
 
     paginator = Paginator(users, items_per_page)
     page = request.GET.get('page')
@@ -52,7 +52,7 @@ def about(request):
 def galleryPost(request):
     gallerys= Gallery.objects.all()
     page = request.GET.get('page')
-    num_of_items = 4 
+    num_of_items = 6
     paginator = Paginator(gallerys, num_of_items)
 
     try: 
