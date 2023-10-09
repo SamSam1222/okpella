@@ -2,7 +2,53 @@
 {% load static %}
 {% block content  %}
 
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 100%;
+        text-align: center;
 
+      }
+      
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      }
+      
+      .container {
+        padding: 2px 16px;
+      }
+
+
+
+
+
+.title {
+    color: black;
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+</style>
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
     <br><br>
@@ -22,15 +68,18 @@
                         
                     </div>
             </header><!-- sect-heading -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     
-            <div class="row">
                 {% if users  %}
                 {% for user in users %}
-                <div class="col-md-3">
+                
+    <div class="col">
+
+                {% comment %} <div class="col-md-3">
                     <figure class="card card-product-grid">
                         <div class="img-wrap"> 
                             
-                            <img src="{{user.image.url}}">
+                            <img width="3500px" src="{{user.image.url}}">
                             
                         </div> <!-- img-wrap.// -->
                         <figcaption class="info-wrap">
@@ -41,7 +90,18 @@
                             </div>
                         </figcaption>
                     </figure>
-                </div> <!-- col.// -->
+                </div> <!-- col.// --> {% endcomment %}
+                <div class="card h-100">
+                    <img height="350px" src="{{user.image.url}}" alt="Avatar" class="card-img-top" >
+                    <div class="card-body">
+                      <h3><b><a style="text-decoration: none; color: #004225	" href="{{user.get_url}}" >{{user.first_name}} {{user.last_name}}</a></b></h3> 
+                      <p class="title"><img style="margin-right: 2px; margin-bottom: 5px;" height=25px src="https://i.postimg.cc/L5nqgcbG/smartphone-2.png">{{user.phone_number}} <br><img style="margin-right: 2px; margin-bottom: 5px;" height=25px src="https://i.postimg.cc/DfH3TVnH/gmail-1.png"> {{user.email}}</p>      
+                                    
+                    </div>
+                    <p><a style="text-decoration: none; color: #004225	" href="{{user.get_url}}" class="title"><button>View More </button></a></p>
+
+                  </div>
+                </div>
                 {% endfor %}
                 {% else %}
                 

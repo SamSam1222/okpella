@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import User , About, Gallery# Import your User model
 from django.shortcuts import render
-from .forms import  UserForm, LoginForm, ContactForm
+from django.contrib.auth.decorators import login_required
+from .forms import  UserForm, ContactForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
+from .forms import UserForm
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.urls import reverse
+from django.contrib import messages
 
 
 
@@ -49,60 +54,131 @@ def about(request):
 
 
 
+
 def galleryPost(request):
-    gallerys= Gallery.objects.all()
+    gallery= Gallery.objects.all()
+
+    items_per_page = 8
+
+    paginator = Paginator(gallery, items_per_page)
     page = request.GET.get('page')
-    num_of_items = 6
-    paginator = Paginator(gallerys, num_of_items)
 
-    try: 
-        gallerys = paginator.page(page)
+    try:
+        paged_gallery = paginator.get_page(page)
     except PageNotAnInteger:
-        page = 1
-        gallerys = paginator.page(page)
+        # If page is not an integer, deliver the first page.
+        paged_gallery = paginator.get_page(1)
     except EmptyPage:
-        page = paginator.num_pages
-        gallerys = paginator.page(page)
+        # If page is out of range (e.g., 9999), deliver the last page of results.
+        paged_gallery = paginator.get_page(paginator.num_pages)
 
+    context = {
+        'gallery': paged_gallery,
+    }
 
-    context = {'gallerys': gallerys, 'paginator': paginator}
     return render(request, 'galleryPost.html', context)
 
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Process the form data
-            form.save()
-            return redirect('home') 
-    else:
-        form = UserForm()
-    
-    return render(request, 'register_form.html', {'form': form})
 
-def login_view(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
+# def login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user = authenticate(username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 return redirect('home')  # Redirect to the home page
+#             else:
+#                 form.add_error(None, "Invalid username or password.")
+#     else:
+#         form = LoginForm()
+    
+#     return render(request, 'login.html', {'form': form})
+
+
+# def user_logout(request):
+#     logout(request)
+#     return redirect('home')
+
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        user = authenticate(username=username, password=password)
+        
+        if user:
+            if user.is_active:
                 login(request, user)
-                return redirect('home')  # Redirect to the home page
+                return HttpResponseRedirect(reverse('home'))
             else:
-                form.add_error(None, "Invalid username or password.")
+                return HttpResponse("ACCOUNT IS DEACTIVATED")
+        else:
+            return HttpResponse("please use correct id and password")
+        
     else:
-        form = LoginForm()
+        return render(request, 'login.html')
     
-    return render(request, 'login.html', {'form': form})
+
+# def login_user(request):
+#     if request.method == "POST":
+#         username = request.POST.get("username")
+#         password = request.POST.get("password")
+#         user = authenticate(request, username=username, password=password)
+        
+#         if user is not None:
+#             login(request, user)
+#             return redirect('home')
+#         else:
+#             messages.success(request, ("There is an error logging in "))
+#             return redirect('login_user')
+#     else:
+#         return render(request, 'login.html',{})
 
 
-def logoutUser(request):
+@login_required
+def user_logout(request):
     logout(request)
-    return redirect('home')
+    return HttpResponseRedirect(reverse('home'))
+
+
+
+
+def register(request):
+
+    registered = False
+
+    if request.method == "POST":
+        user_form = UserForm(request.POST, request.FILES)
+        if user_form.is_valid():
+        # Process the form data
+          user = user_form.save()
+          user.save()
+          login(request, user)
+          return redirect('home')
+        
+        #    messages.success(request, "Registration successful." )
+        else:
+            # print(user_form.errors)
+            messages.error(request, user_form.errors)
+    else:
+        user_form = UserForm()
+        
+    # messages.success(request, "Your Account has been successfully created")
+    return render(request, 'register.html',
+                            {'registered':registered, 'user_form': user_form})
+
+
+
+
+
+
+
+
 
 def contact(request):
     if request.method == 'POST':

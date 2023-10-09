@@ -46,7 +46,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=30)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     discipline = models.CharField(max_length=20)
-    image = models.ImageField(upload_to='photos/', blank=True)
+    image = models.ImageField(upload_to='photos/')
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True)
@@ -61,6 +61,10 @@ class User(AbstractUser):
    
     def __str__(self):
         return self.username
+    
+
+
+    
 class Contact(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)

@@ -1,15 +1,23 @@
 from django import forms
 from .models import User, Contact
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+class UserForm(UserCreationForm):
+  
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'status', 'discipline', 'image', 'phone_number', 'email', 'PPA', 'category', 'gender', 'password']
+        fields = ['username', 'first_name', 'last_name', 'status', 'discipline', 'image', 'phone_number', 'email', 'PPA', 'category', 'gender']
+
+
+
+        labels = {
+            'password1':'Password',
+            'password2':'Confirm Password'
+        }
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -33,6 +41,8 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match.")
         
         return cleaned_data
+    
+    
 class LoginForm(AuthenticationForm):
     class Meta:
         model = User  # Specify the User model
