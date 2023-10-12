@@ -74,23 +74,6 @@
                 {% for user in users %}
                 
     <div class="col">
-
-                {% comment %} <div class="col-md-3">
-                    <figure class="card card-product-grid">
-                        <div class="img-wrap"> 
-                            
-                            <img width="3500px" src="{{user.image.url}}">
-                            
-                        </div> <!-- img-wrap.// -->
-                        <figcaption class="info-wrap">
-                            <div class="fix-height">
-                                <a href="{{user.get_url}}" class="title">{{user.first_name}} {{user.last_name}}</a>
-                                <p>{{user.phone_number}}</p>
-                                <p>{{user.email}}</p>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div> <!-- col.// --> {% endcomment %}
                 <div class="card h-100">
                     <img height="350px" src="{{user.image.url}}" alt="Avatar" class="card-img-top" >
                     <div class="card-body">

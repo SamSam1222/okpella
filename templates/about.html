@@ -1,6 +1,53 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+  .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 100%;
+      text-align: center;
+
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .container {
+      padding: 2px 16px;
+    }
+
+
+
+
+
+.title {
+  color: black;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
 <br>
   <!-- About Section -->
   <div class="w3-container w3-padding-32" id="about">
@@ -13,7 +60,7 @@
 
   <div class="w3-row-padding w3-grayscale">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Leaders</h3>
-{% for about in abouts %}
+{% comment %} {% for about in abouts %}
     <div class="w3-col l3 m6 w3-margin-bottom">
       <img src="{{about.image.url}}" alt="John" style="width:100%">
       <h5>Name: {{about.name}}</h5>
@@ -25,7 +72,29 @@
     </div>
   
     {% endfor %}
-  </div>
+  </div> {% endcomment %}
 
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for about in abouts %}
+    
+<div class="col">
+    <div class="card h-100">
+        <img height="350px" src="{{about.image.url}}" alt="Avatar" class="card-img-top" >
+        <div class="card-body" style="text-align: left;">
+          <h5><b><span class="font-effect-shadow-multiple">Name:</span> <span style="color: blue	;">{{about.name}}</span></b></h5> 
+          <h5><b><span class="font-effect-shadow-multiple">Position:</span> <span style="color: blue;">{{about.position}}</span></b></h5> 
+          <h5><b><span class="font-effect-shadow-multiple">Phone Number:</span> <span style="color: blue;">{{about.phone_number}}</span></b></h5> 
+          <h5><b><span class="font-effect-shadow-multiple">Email:</span>  <span style="color: blue;">{{about.email}}</span></b></h5> 
+                        
+        </div>
 
+      </div>
+    </div>
+    {% endfor %}
+    
+</div>
+
+<br>
+<br>
+</div>
 {% endblock  %}
