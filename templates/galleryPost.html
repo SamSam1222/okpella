@@ -354,11 +354,21 @@ a {
 
     <!-- Grid container -->
     <section class="">
+
       <p class="d-flex justify-content-center align-items-center">
-      <span class="me-3" style="font-size:18px; font-family: sans-serif; font-weight:900; color:#B87333	;">Register for free</span><a href="{% url 'register' %}" text-decoration="none"><button type="button" style="border-color:#151B54; border-style: none; " class="btn  btn-outline-info ">
-        Sign up!
-      </button></a>
+    {% if user.is_authenticated %}
+
+      <span class="me-3" style="font-size:24px; font-family: sans-serif; font-weight:900; color:#B87333	;">
+          <marquee  behavior="scroll" direction="left"><span  style=" color: B87333; font-weight:bold; font-size:px; font-style: italic; text-transform:uppercase;">  Hi {{user.username}}, You are welcome to Okpella NYSC online magazine</span></marquee>
+
+      {% else %}
+      <span class="me-3" style="font-size:18px; font-family: sans-serif; font-weight:900; color:#B87333	;">Register for free</span>
+      <a href="{% url 'register' %}" text-decoration="none"> <button type="button" class="btn  btn-outline-light " style="  border-radius: 20px;">
+         Sign up
+       </button></a>
       </p>
+      {% endif %}
+      
       </section>
       <hr class="mb-4" />
 
