@@ -81,28 +81,6 @@ def galleryPost(request):
 
 
 
-# def login(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect('home')  # Redirect to the home page
-#             else:
-#                 form.add_error(None, "Invalid username or password.")
-#     else:
-#         form = LoginForm()
-    
-#     return render(request, 'login.html', {'form': form})
-
-
-# def user_logout(request):
-#     logout(request)
-#     return redirect('home')
-
 
 def login_user(request):
     if request.method == "POST":
@@ -124,20 +102,6 @@ def login_user(request):
         return render(request, 'login.html')
     
 
-# def login_user(request):
-#     if request.method == "POST":
-#         username = request.POST.get("username")
-#         password = request.POST.get("password")
-#         user = authenticate(request, username=username, password=password)
-        
-#         if user is not None:
-#             login(request, user)
-#             return redirect('home')
-#         else:
-#             messages.success(request, ("There is an error logging in "))
-#             return redirect('login_user')
-#     else:
-#         return render(request, 'login.html',{})
 
 
 @login_required
@@ -158,17 +122,15 @@ def register(request):
         # Process the form data
           user = user_form.save()
           user.save()
+          messages.success(request, 'You have singed up successfully.')
           login(request, user)
           return redirect('home')
         
-        #    messages.success(request, "Registration successful." )
         else:
-            # print(user_form.errors)
             messages.error(request, user_form.errors)
     else:
         user_form = UserForm()
         
-    # messages.success(request, "Your Account has been successfully created")
     return render(request, 'register.html',
                             {'registered':registered, 'user_form': user_form})
 

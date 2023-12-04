@@ -6,8 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 class UserForm(UserCreationForm):
   
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-
+    password2 = None
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'status', 'discipline', 'image', 'phone_number', 'email', 'PPA', 'category', 'gender']
@@ -16,7 +15,6 @@ class UserForm(UserCreationForm):
 
         labels = {
             'password1':'Password',
-            'password2':'Confirm Password'
         }
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
@@ -24,23 +22,14 @@ class UserForm(UserCreationForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             'discipline': forms.TextInput(attrs={'class': 'form-control'}),
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'PPA': forms.Textarea(attrs={'class': 'form-control', 'rows': 5,}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
         }
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get('password')
-        confirm_password = cleaned_data.get('confirm_password')
-
-        if password and confirm_password and password != confirm_password:
-            raise forms.ValidationError("Passwords do not match.")
-        
-        return cleaned_data
     
     
 class LoginForm(AuthenticationForm):

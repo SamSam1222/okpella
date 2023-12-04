@@ -16,6 +16,7 @@
 <!-- Bootstrap4 files-->
 <script src="{% static 'static/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
 <link href="{% static 'static/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <!-- Font awesome 5 -->
 <link href="{% static 'static/fonts/fontawesome/css/all.min.css' %}" type="text/css" rel="stylesheet">
@@ -32,8 +33,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>  
   <body style="background: url(https://i.postimg.cc/QCZF7w5Q/nysc-bigpics.jpg) no-repeat center center fixed;
-  background-size: cover;
-  height: 100%; background-color:#123456;  ">
+  background-size: cover;  overflow-x: hidden;
+
+   ">
+   
     <style>
 
       body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
@@ -73,7 +76,14 @@
 
 
 
-
+    @media only screen and (max-width: 600px) {
+      .sub-content{
+       max-width: 330px;
+       width:auto;
+       margin-right:0
+       
+      }
+    }
     </style>
 
     <div class="w3-top">

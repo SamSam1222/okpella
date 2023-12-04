@@ -45,7 +45,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
-    discipline = models.CharField(max_length=20)
+    discipline = models.CharField(max_length=90)
     image = models.ImageField(upload_to='photos/')
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField(unique=True)
