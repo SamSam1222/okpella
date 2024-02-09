@@ -158,6 +158,32 @@ a {
      width:auto;
     }
 
+  }
+
+
+
+    .center-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      position: relative; /* Ensure the pagination container has a positioning context */
+      z-index: 0; /* Set a lower z-index for the pagination */
+
+    }
+
+    .pagination .active a {
+      background-color:  #004225 !important;
+      color: #fff !important;
+      outline: #004225; /* Adjust the color as needed */
+      text-decoration: none;
+
+
+    }
+    
+
+
+
+
 </style>
 </head>
 <body>
@@ -182,25 +208,7 @@ a {
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 
-  <!-- First Photo Grid-->
-{% comment %} 
-  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-    {% for gallerys in gallerys %}
-    <div class="w3-quarter">
-<div class="card">
-  <img height="400px" width="100%" src="{{gallerys.image.url}}" alt="Avatar" style="width:100%">
-  <div class="container">
-    <br>
-    <p style="font-size: 15px"><b>{{gallerys.title}}</b></p> 
-    <h4 style="font-size: 20px">{{gallerys.body2}}</h4> 
-  </div>
-</div>
-</div>
-   {% endfor%}
-    
-  </div> {% endcomment %}
-
-
+  
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for gallery in gallery %}
     {% if gallery.image %}
@@ -220,46 +228,35 @@ a {
 
 <br>
 <br>
-  {% comment %} <nav aria-label="...">
-    <ul class="pagination pagination-lg" style = 'justify-content: center'>
-      {% for page in paginator.page_range %}
-      {% if page == gallerys.number %}
-      <li class="page-item active" aria-current="page">
-        <span class="page-link">{{page}}</span>
-      </li>
-      {% else %} 
-      <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
-      {% endif %}
-      {% endfor %}
-    </ul>
-  </nav> {% endcomment %}
-      
-  <nav class="mt-4" aria-label="Page navigation sample">
-    {% if gallery.has_other_pages %}
-      <ul class="pagination">
-        {% if gallery.has_previous %}
-        <li class="page-item "><a class="page-link" href="?page={{gallery.previous_page_number}}">Previous</a></li>
-        {% else %}
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 
-        {% endif %}
 
-        {% for i in gallery.paginator.page_range %}
-        {% if gallery.number == i %}
-            <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
-        {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-    {% endfor %}
-    {% if gallery.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{gallery.next_page_number}}">Next</a></li>
-    {% else %}
-    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+<div class="center-pagination">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination pagination-flush">
+      {% if gallery.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ gallery.previous_page_number }}">Previous</a></li>
+      {% else %}
+            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+          {% endif %}
+    
+          {% for i in visible_page_numbers %}
+            <li class="page-item {% if gallery.number == i %}active{% endif %}">
+              <a class="page-link circle circle-md" href="?page={{ i }}"><span>{{ i }}</span></a>
+            </li>
+          {% endfor %}
+    
+          {% if gallery.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ gallery.next_page_number }}">Next</a></li>
+          {% else %}
+            <li class="page-item disabled"><span class="page-link">Next</span></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
 
-    {% endif %}
-      </ul>
-      {% endif %}
-    </nav>
+
+
+
   <hr id="about">
 
   

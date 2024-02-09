@@ -176,12 +176,12 @@ body, html {
   border: red;
   float: left;
   width: 80%;
-  background: #F5F5F5	;
+  background: #F5F5F5;
 }
 
 
 overlay input[type=text]: placeholder {
-  color: #F5F5F5	;
+  color: #F5F5F5;
 }
 
 
@@ -267,6 +267,7 @@ overlay input[type=text]: placeholder {
   color: #ccc;
 }
 
+
 .overlaying input[type=text] {
   padding: 12px;
   font-size: 17px;
@@ -303,6 +304,7 @@ overlay input[type=text]: placeholder {
 }
 
 /// End of the fullscreen search
+
 
 
 
@@ -433,7 +435,9 @@ function closeSearching() {
             </form>
           </div>
         </div>
-    
+
+
+
 
       </div>
 
@@ -443,12 +447,12 @@ function closeSearching() {
 
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-     <span href="javascript:void(0)"  class=" w3-button  w3-left w3-hide-large w3-hide-medium" onclick="w3_open()" style="margin-top: -4px">
+    <span href="javascript:void(0)"  class=" w3-button  w3-left w3-hide-large w3-hide-medium" onclick="w3_open()" style="margin-top: -4px">
       <i  class="fa fa-bars"></i>
-     </span>  
-  <span class="w3-padding-large w3-hide-large w3-hide-medium" style="color: white; hover: none; font-size: 23px; font-weight: 900; font-family: Georgia; text-align: center; display: block; margin-top: -7px; margin-right: 40px;"> <a href="{% url 'home' %}"  style="text-decoration: none; hover: none;"><span style="color: white; text-decoration: none; hover: none; ">Okpella Corpers</span> </a> </span>
+     </span>   
+     <span class="w3-padding-large w3-hide-large w3-hide-medium" style="color: white; hover: none; font-size: 23px; font-weight: 900; font-family: Georgia; text-align: center; display: block; margin-top: -7px; margin-right: 40px;"> <a href="{% url 'home' %}"  style="text-decoration: none; hover: none;"><span style="color: white; text-decoration: none; hover: none; ">Okpella Corpers</span> </a> </span>
 
-    <button class=" openBtning  w3-right w3-hide-large w3-hide-medium" onclick="openSearching()" style=" margin-top: -59px;" > <i class="fa fa-search"></i></button>  
+     <button class=" openBtning  w3-right w3-hide-large w3-hide-medium" onclick="openSearching()" style=" margin-top: -59px;" > <i class="fa fa-search"></i></button>  
 
 
 <!-- Sidebar on small screens when clicking the menu icon -->
@@ -486,7 +490,7 @@ function closeSearching() {
   <span class="closebtning" onclick="closeSearching()" title="Close Overlaying">×</span>
   <div class="overlay1-content">
     <form action="{% url "search" %}">
-      <input type="text" method="GET" name="keyword" id="searchInput" placeholder="Search PPA Here" name="search">
+      <input type="text" method="GET" name="keyword" id="searchInput" placeholder="Search PPA Here.." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>
@@ -564,26 +568,7 @@ function closeSearching() {
         </div>
         <!--Grid row-->
       </div>
-      <hr class="mb-4" />
-    
-      <!-- Grid container -->
-      <section class="">
 
-        <p class="d-flex justify-content-center align-items-center">
-      {% if user.is_authenticated %}
-
-        <span class="me-3" style="font-size:24px; font-family: sans-serif; font-weight:900; color:#B87333	;">
-            <marquee  behavior="scroll" direction="left"><span  style=" color: B87333; font-weight:bold; font-size:px; font-style: italic; text-transform:uppercase;">  Hi {{user.username}}, You are welcome to Okpella NYSC online magazine</span></marquee>
-
-        {% else %}
-        <span class="me-3" style="font-size:18px; font-family: sans-serif; font-weight:900; color:#B87333	;">Register for free</span>
-        <a href="{% url 'register' %}" text-decoration="none"> <button type="button" class="btn  btn-outline-light " style="  border-radius: 20px;">
-           Sign up
-         </button></a>
-        </p>
-        {% endif %}
-        
-        </section>
         <hr class="mb-4" />
 
 <!-- Section: Social media -->

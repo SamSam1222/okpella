@@ -28,7 +28,7 @@
     font-size: 18px;
   }
   
-  button {
+  button3 {
     border: none;
     outline: 0;
     display: inline-block;
@@ -45,9 +45,19 @@
     color: black;
   }
   
-  button:hover, a:hover {
+  {% comment %} button3:hover, a:hover {
     opacity: 0.7;
-  }
+  } {% endcomment %}
+
+  .title {
+    transition: opacity 0.3s; /* Adding transition for smoother effect */
+}
+
+.title:hover {
+    color: #2B1B17	; /* Change the color to your desired hover color */
+    opacity: 0.7; /* Set opacity to 0.7 when hovering */
+    /* You can add additional styles here for the hover effect */
+}
 </style>
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
@@ -67,7 +77,8 @@
                         <span class="mr-md-auto">{{users_count}} corpers found </span>
                         
                     </div>
-            </header><!-- sect-heading -->
+            </header>
+            <!-- sect-heading -->
   <div class="row row-cols-1 row-cols-md-3 g-4">
     
                 {% if users  %}
@@ -81,7 +92,7 @@
                       <p class="title"><img style="margin-right: 2px; margin-bottom: 5px;" height=25px src="https://i.postimg.cc/L5nqgcbG/smartphone-2.png">{{user.phone_number}} <br><img style="margin-right: 2px; margin-bottom: 5px;" height=25px src="https://i.postimg.cc/DfH3TVnH/gmail-1.png"> {{user.email}}</p>      
                                     
                     </div>
-                    <p><a style="text-decoration: none; color: #004225	" href="{{user.get_url}}" class="title"><button>View More </button></a></p>
+                    <p><a style="text-decoration: none; color: #004225	" href="{{user.get_url}}" class="title"><button3>View More </button3></a></p>
 
                   </div>
                 </div>
@@ -94,12 +105,12 @@
                 {% endif %}
     
     
-        </main> <!-- col.// -->
+        </main>
     
     </div>
     
-    </div> <!-- container .//  -->
+    </div> 
+    
     </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
     
 {% endblock  %}

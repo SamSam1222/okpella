@@ -27,7 +27,7 @@
   font-size: 18px;
 }
 
-button {
+button2 {
   border: none;
   outline: 0;
   display: inline-block;
@@ -39,14 +39,6 @@ button {
   width: 100%;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}
 </style>
 <br>
   <!-- About Section -->
@@ -60,19 +52,6 @@ button:hover, a:hover {
 
   <div class="w3-row-padding w3-grayscale">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Leaders</h3>
-{% comment %} {% for about in abouts %}
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="{{about.image.url}}" alt="John" style="width:100%">
-      <h5>Name: {{about.name}}</h5>
-      <h6 class="w3-opacity">Position: {{about.position}}</h6>
-      <h6>Name: {{about.phone_number}}</h6>
-      <h6>Name: {{about.email}}</h6>
-
-      <p><a href="https://web.whatsapp.com/"><button class="w3-button w3-light-grey w3-block">Contact</button></a></p>
-    </div>
-  
-    {% endfor %}
-  </div> {% endcomment %}
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for about in abouts %}

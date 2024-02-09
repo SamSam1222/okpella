@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
 
 
+
     
 
 ]
@@ -85,11 +86,17 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                
 
             ],
+
         },
     },
 ]
+
+
+
+
 
 WSGI_APPLICATION = 'OkpellaCM.wsgi.application'
 
